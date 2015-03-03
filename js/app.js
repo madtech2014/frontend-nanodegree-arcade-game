@@ -4,7 +4,7 @@ var playerStartX = 200; //player starting position horizontal
 var playerStartY = 400; //player starting position vertical
 var stepX =95; // player moves horizontally 95 pix each step
 var stepY = 80; // mplayer moves vertically 80 pix each step
-var enemyCount = 4;
+var enemyCount = 4; //max number of enemy bugs 
 var playerMaxRightX= 400; //limit of player movement to right
 var playerMaxLeftX= 0;  //limit of player movement to left
 var playerMaxUpY = 80; //limit of player movement up
@@ -57,7 +57,7 @@ var Player = function(x,y) {
 Player.prototype.update = function(dt) {
    for(var e=0;e<enemyCount;e++){ //Loop through all enemies
     //Detects collisons by checking the player and enemies distances from each other if collison detected game is reset
-     //and player gets back to its initial position  and score decrements by 1
+     //and player gets reset back to its initial start position  and score decrements by 1
         if(player.x <= (allEnemies[e].x + 70) && allEnemies[e].x <= (player.x + 50) && player.y <= (allEnemies[e].y + 70) && allEnemies[e].y <= (player.y + 60)) {
             this.x = 200;
             this.y = 400;
@@ -65,9 +65,9 @@ Player.prototype.update = function(dt) {
             document.getElementById('score').innerHTML = 'Score ['+score+']';
         }
     }
-    // Checking Win state - The player reaches win position and then reverts to start position scrore increments by 1
+    // Checking Win state - The player reaches win position and then reverts to initial start position  and scrore increments by 1
 
-          Player.prototype.resetOnWin = function () {
+          Player.prototype.winReset = function () {
             player.x = 200;
             player.y = 400;
             score++;
@@ -93,7 +93,7 @@ Player.prototype.handleInput = function(key) {
             }    
             else{
                 this.y=80;
-                player.resetOnWin();
+                player.winReset();
             }
             break;
         case "down": 
