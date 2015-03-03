@@ -2,16 +2,13 @@ var playerHeight = 80;
 var playerWidth = 75;
 var playerStartX = 200; //player starting position horizontal
 var playerStartY = 400; //player starting position vertical
-
 var stepX =95; // player moves horizontally 95 pix each step
 var stepY = 80; // mplayer moves vertically 80 pix each step
-var winX = 200;
-var winY = 80;
 var enemyCount = 4;
 var playerMaxRightX= 400; //limit of player movement to right
 var playerMaxLeftX= 0;  //limit of player movement to left
-var playerMaxUpY = 80;
-var playerMaxDownY = 400;
+var playerMaxUpY = 80; //limit of player movement up
+var playerMaxDownY = 400;//limit of player movement down
 var enemySpeeds = [100,150,200]; // array containing different enemy speeds
 var enemyStartY = [65,145,225]; // array containing starting Y value for the bugs for different rows
 
@@ -34,9 +31,9 @@ Enemy.prototype.update = function(dt) {
     if(this.x > ctx.canvas.width){ // Tests whether the Enemy is off screen to right side
         this.x = -100; // Reset Enemy outside canvas on the left
         var randomRow = randomNumber(3);
-        this.y = enemyStartY[randomRow]; // Decides the Y value for the enemy randomly from BUGSTARTY array on update.
+        this.y = enemyStartY[randomRow]; // Decides the Y value for the enemy randomly from enemyStartY array 
         var randomSpeed = randomNumber(3);
-        this.speed = enemySpeeds[randomSpeed]; //Decides the speed of the enemy randomly from DIFFSPEEDS array on update.
+        this.speed = enemySpeeds[randomSpeed]; //Decides the speed of the enemy randomly from enemySpeeds array
     }
     this.x += this.speed *dt; // Multiply movement by the dt parameter will ensure that the game runs at the same speed for all computers.
 }
@@ -60,7 +57,7 @@ var Player = function(x,y) {
 Player.prototype.update = function(dt) {
    for(var e=0;e<enemyCount;e++){ //Loop through all enemies
     //Detects collisons by checking the player and enemies distances from each other if collison detected game is reset
-     //and player gets back to its initial position 
+     //and player gets back to its initial position  and score decrements by 1
         if(player.x <= (allEnemies[e].x + 70) && allEnemies[e].x <= (player.x + 50) && player.y <= (allEnemies[e].y + 70) && allEnemies[e].y <= (player.y + 60)) {
             this.x = 200;
             this.y = 400;
@@ -68,15 +65,14 @@ Player.prototype.update = function(dt) {
             document.getElementById('score').innerHTML = 'Score ['+score+']';
         }
     }
-    // Checking Win state - The timeout function waits for 1000 ms after player reaches win position and then resets the game 
+    // Checking Win state - The player reaches win position and then reverts to start position scrore increments by 1
 
-    if(this.y == winY && this.x == winX){  
-         // Player.prototype.resetOnWin = function () {
+          Player.prototype.resetOnWin = function () {
             player.x = 200;
             player.y = 400;
             score++;
             document.getElementById('score').innerHTML = 'Score ['+score+']';
-         //},1000);       
+         
     }
 }
 
@@ -97,6 +93,7 @@ Player.prototype.handleInput = function(key) {
             }    
             else{
                 this.y=80;
+                player.resetOnWin();
             }
             break;
         case "down": 
