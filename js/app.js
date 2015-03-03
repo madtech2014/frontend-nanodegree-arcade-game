@@ -56,9 +56,8 @@ var Player = function(x,y) {
 //Check for collisions and win state
 Player.prototype.update = function(dt) {
    for(var e=0;e<enemyCount;e++){ //Loop through all enemies
-    //Detects collisons by checking the player and enemies distances from each other if collison detected game is reset
-     //and player gets reset back to its initial start position  and score decrements by 1
-        if(player.x <= (allEnemies[e].x + 70) && allEnemies[e].x <= (player.x + 50) && player.y <= (allEnemies[e].y + 70) && allEnemies[e].y <= (player.y + 60)) {
+    //Detects collisons by checking the player and enemies distances from each other if collison detected game is reset and player gets reset back to its initial start position  and score decrements by 1
+         if(player.x <= (allEnemies[e].x + 70) && allEnemies[e].x <= (player.x + 50) && player.y <= (allEnemies[e].y + 70) && allEnemies[e].y <= (player.y + 60)) {
             this.x = 200;
             this.y = 400;
             score--;
