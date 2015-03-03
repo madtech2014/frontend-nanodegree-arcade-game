@@ -1,3 +1,19 @@
 body {
     text-align: center;
+
+}
+#title {
+    font-family: 'Henny Penny', cursive;
+    font-size: 64px;
+    margin-top: 35px;
+    background: linear-gradient(#333399, #990099);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+}
+
+#score {
+    font-family: 'Henny Penny', cursive;
+    font-size: 32px;
+    color: orange;
+
 }
