@@ -4,7 +4,7 @@ Welcome to "BUG DODGER" my take on the Classic Arcade Game "Frogger"
 
 The Game is not currently Udacious enough for my taste but here is how to play:
 
-Open file in your browser: https://github.com/madtech2014/frontend-nanodegree-arcade-game/blob/master/index.html
+Open file in your browser: http://htmlpreview.github.io/?https://github.com/madtech2014/frontend-nanodegree-arcade-game/blob/master/index.html
 
 Or download zip file to local pc and open index.html in browser after unzipping to computer: https://github.com/madtech2014/frontend-nanodegree-arcade-game/archive/master.zip
 
